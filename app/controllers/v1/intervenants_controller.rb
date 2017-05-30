@@ -1,5 +1,5 @@
 class V1::IntervenantsController < ApplicationController
-  before_action :set_headers 
+  before_action :set_headers
 
   def index
     if (missing_params = [:adresse, :thematiques].keep_if { |param| params[param].blank? }).present?
@@ -8,19 +8,21 @@ class V1::IntervenantsController < ApplicationController
 
     departement = nil
     if params[:adresse] =~ /\d{5,}/
+      code_commune = Regexp.last_match[0]
       departement = Regexp.last_match[0][0..1]
     end
 
     return render text: {
-      "code_commune": "25411",
+      "code_commune": code_commune,
       "type_departement": "Non déployé",
-      "operateur": OPERATEURS[0..1],
-      "service_instructeur": [ INSTRUCTEURS[3] ],
+      "operateur": OPERATEURS[departement],
+      "service_instructeur": INSTRUCTEURS[departement][0],
       "dlc2": [],
       "pris_anah": PRIS[departement],
       "pris_eie": [],
     }.to_json
   end
+
 
 private
   def set_headers
@@ -31,171 +33,352 @@ private
     "25" => [{
       raison_sociale: "ADIL 25",
       id_clavis: 5264,
-      adresse_postale: "1 Rue de Ronde du Fort Griffon, 25000 Besançon",
+      adresse_postale: {
+        adresse1: "1 Rue de Ronde du Fort Griffon",
+        adresse2: "",
+        adresse3: "",
+        code_postal: "25000",
+        ville: "Besançon"
+      },
       email: "demo-pris@anah.gouv.fr",
+      web: "www.adil25.org",
+      tel: "03 81 61 92 41"
     }],
+
     "88" => [{
       raison_sociale: "PRIS-DDT-88",
       id_clavis: 5269,
-      adresse_postale: "22-26 Avenue Dutac, 88000 Épinal",
-      phone: "03 33 44 55 66",
+      adresse_postale: {
+        adresse1: "22-26 Avenue Dutac",
+        adresse2: "",
+        adresse3: "",
+        code_postal: "88000",
+        ville: "Épinal"
+      },
       email: "pris88@anah.gouv.fr",
+      tel: "03 33 44 55 66",
+      web: "www.adil25.org"
     }],
+
     "95" => [{
       raison_sociale: "ADIL 95",
       id_clavis: 5272,
-      adresse_postale: "La Croix Saint-Sylvère, 95000 Cergy",
+      adresse_postale: {
+        adresse1: "La Croix Saint-Sylvère",
+        adresse2: "",
+        adresse3: "",
+        code_postal: "95000",
+        ville: "Cergy"
+      },
       email: "pris95@anah.gouv.fr",
+      tel: "03 33 44 55 66",
+      web: "www.adil25.org"
     }],
+
     "31" => [{
       raison_sociale: "PRIS DDT 31",
       id_clavis: 5277,
+      adresse_postale: {
+        adresse1: "2 Boulevard Armand Duportal",
+        adresse2: "",
+        adresse3: "",
+        code_postal: "31000",
+        ville: "Toulouse"
+      },
       email: "pris31@anah.gouv.fr",
+      tel: "03 33 44 55 66",
+      web: "www.adil25.org"
     }],
+
     "62" => [{
       raison_sociale: "PRIS DDT 62",
       id_clavis: 5280,
-      adresse_postale: "1 Boulevard de la Marquette, 31090 Toulouse",
+      adresse_postale: {
+        adresse1: "6 Rue Jean Bodel",
+        adresse2: "",
+        adresse3: "",
+        code_postal: "62000",
+        ville: "Arras"
+      },
       email: "pris62@anah.gouv.fr",
+      tel: "03 33 44 55 66",
+      web: "www.adil25.org"
     }],
+
     "75" => [{
       raison_sociale: "Centre Information Habitat Adil 75",
-      themes: ["autonomie", "insalubrité", "énergie"],
-      adresse_postale: "13 rue Crespin du Gast, 75011 Paris",
+      adresse_postale: {
+        adresse1: "13 rue Crespin du Gast",
+        adresse2: "",
+        adresse3: "",
+        code_postal: "75011",
+        ville: "Paris"
+      },
       email: "adil_75@mailinator.com",
+      tel: "03 33 44 55 66",
+      web: "www.adil25.org"
     }],
   }
 
-  OPERATEURS = [
-    {
-      departements: ["25"],
+  OPERATEURS = {
+    "25" => [{
       raison_sociale: "AJJ",
       id_clavis: 5267,
       email: "operateur25-1@anah.gouv.fr",
+      siret: "30247604900046",
+      adresse_postal: {
+        adresse: "30 rue du Caporal Peugeot",
+        code_postal: "25000",
+        ville: "BESANCON"
+      },
+      tel: "03 81 81 23 33",
+      web: "www.soliha.fr"
     },
+
     {
-      departements: ["25", "90"],
       raison_sociale: "SOLIHA 25-90",
       id_clavis: 5262,
-      adresse_postale: "30 rue Caporal Peugeot, 25000 Besançon",
       email: "demo-operateur@anah.gouv.fr",
-    },
-    {
-      departements: ["88"],
+      siret: "30247604901036",
+      adresse_postal: {
+        adresse: "30 rue du Caporal Peugeot",
+        code_postal: "25000",
+        ville: "BESANCON"
+      },
+      tel: "04 37 28 70 20",
+      web: "www.rhonegrandlyon.soliha.fr"
+    }],
+
+    "88" => [{
       raison_sociale: "URBAM CONSEIL SAS",
       id_clavis: 5265,
-      adresse_postale: "5 Rue Thiers, 88000 Épinal",
-      phone: "03 00 11 22 33",
       email: "operateur88-1@anah.gouv.fr",
+      siret: "30247634900036",
+      adresse_postal: {
+        adresse: "5 rue Thiers BP 450",
+        code_postal: "88011",
+        ville: "BESEPINAL CEDEX"
+      },
+      tel: "03 00 11 22 33",
+      web: "www.urbam.fr"
     },
     {
-      departements: ["88"],
       raison_sociale: "BET Exergie",
       id_clavis: 5270,
-      adresse_postale: "2 Route d'Aydoilles, 88600 Fontenay",
       email: "operateur88-2@anah.gouv.fr",
-    },
-    {
-      departements: ["95"],
+      siret: "34758223100168",
+      adresse_postal: {
+        adresse: "2 Route d'Aydoilles",
+        code_postal: "88600",
+        ville: "Fontenay"
+      },
+      tel: "04 37 28 70 20",
+      web: "www.rhonegrandlyon.soliha.fr"
+    }],
+    "95" => [{
       raison_sociale: "SOLIHA Paris.Hauts de Seine.Val d'Oise",
       id_clavis: 5271,
-      adresse_postale: "Les Châteaux Saint-Sylvère, 95000 Cergy",
       email: "operateur95-1@anah.gouv.fr",
-    },
-    {
-      departements: ["31"],
+      siret: "30247604900036",
+      adresse_postal: {
+        adresse: "Les Châteaux Saint-Sylvère",
+        code_postal: "95000",
+        ville: "Cergy"
+      },
+      tel: "04 37 28 70 20",
+      web: "www.rhonegrandlyon.soliha.fr"
+    }],
+    "31" => [{
       raison_sociale: "SOLIHA Haute Garonne",
       id_clavis: 5276,
-      adresse_postale: "2 Boulevard Armand Duportal, 31000 Toulouse",
       email: "operateur31-1@anah.gouv.fr",
+      siret: "77557134200077",
+      adresse_postal: {
+        adresse: "2 Boulevard Armand Duportal",
+        code_postal: "31000",
+        ville: "Toulouse"
+      },
+      tel: "04 37 28 70 20",
+      web: "www.rhonegrandlyon.soliha.fr"
     },
     {
-      departements: ["31"],
       raison_sociale: "URBANIS Toulouse",
       id_clavis: 5274,
-      adresse_postale: "60 Boulevard Déodat de Sévérac, 31300 Toulouse",
       email: "operateur31-2@anah.gouv.fr",
-    },
-    {
-      departements: ["62"],
+      siret: "30247604900036",
+      adresse_postal: {
+        adresse: "60 Boulevard Déodat de Sévérac",
+        code_postal: "31300",
+        ville: "Toulouse"
+      },
+      tel: "04 37 28 70 20",
+      web: "www.rhonegrandlyon.soliha.fr"
+    }],
+    "62" => [{
       raison_sociale: "SOLIHA du Pas de Calais",
       id_clavis: 5275,
-      adresse_postale: "6 Rue Jean Bodel, 62000 Arras",
       email: "operateur62-1@anah.gouv.fr",
+      siret: "30247604900036",
+      adresse_postal: {
+        adresse: "6 Rue Jean Bodel",
+        code_postal: "62000",
+        ville: "Arras"
+      },
+      tel: "04 37 28 70 20",
+      web: "www.rhonegrandlyon.soliha.fr"
     },
     {
-      departements: ["62"],
       raison_sociale: "INHARI",
       id_clavis: 5278,
-      adresse_postale: "44 Rue du Champ des Oiseaux, 76000 Rouen",
       email: "operateur62-2@anah.gouv.fr",
-    },
-  ]
+      siret: "30247604900036",
+      adresse_postal: {
+        adresse: "6 Rue Jean Bodel",
+        code_postal: "62000",
+        ville: "Arras"
+      },
+      tel: "04 37 28 70 20",
+      web: "www.rhonegrandlyon.soliha.fr"
+    }],
+  }
 
-  INSTRUCTEURS = [
-    {
-      departements: ["25"],
+  INSTRUCTEURS = {
+    "25"=> [{
       raison_sociale: "DDT 25",
       id_clavis: 5054,
       email: "demo-delegation@anah.gouv.fr",
       type: "DDT",
-    },
-    {
-      departements: ["88"],
+      siret: "30247604900036",
+      adresse_postal: {
+        adresse1: "30 rue du Caporal Peugeot",
+        adresse2: "",
+        adresse3: "",
+        code_postal: "25000",
+        ville: "BESANCON"
+      },
+      tel: "03 81 81 23 33",
+      web: "www.soliha.fr"
+    }],
+
+    "88" => [{
       raison_sociale: "DDT des VOSGES",
       id_clavis: 5119,
       adresse_postale: "22-26 Avenue Dutac, 88000 Épinal",
       phone: "03 99 88 77 66",
+      siret: "30227604900036",
       email: "delegation88-1@anah.gouv.fr",
       type: "DDT",
-    },
-    {
-      departements: ["95"],
+      adresse_postal: {
+        adresse1: "5 rue Thiers BP 450",
+        adresse2: "",
+        adresse3: "",
+        code_postal: "88011",
+        ville: "BESEPINAL CEDEX"
+      },
+      tel: "03 00 11 22 33",
+      web: "www.urbam.fr"
+    }],
+
+    "95" => [{
       raison_sociale: "DDT du Val d'Oise",
       id_clavis: 5123,
       email: "delegation95-1@anah.gouv.fr",
+      siret: "30247604900037",
       type: "DDT",
-    },
-    {
-      departements: ["31"],
+      adresse_postal: {
+        adresse1: "Les Châteaux Saint-Sylvère",
+        adresse2: "",
+        adresse3: "",
+        code_postal: "95000",
+        ville: "Cergy"
+      },
+      tel: "04 37 28 79 20",
+      web: "www.rhonegrandlyon.soliha.fr"
+    }],
+
+    "31" => [{
       raison_sociale: "DDT de Haute-Garonne",
       id_clavis: 5062,
-      adresse_postale: "2 Boulevard Armand Duportal, 31000 Toulouse",
       email: "delegation31@anah.gouv.fr",
       type: "DDT",
+      siret: "30247604900036",
+      adresse_postal: {
+        adresse1: "2 Boulevard Armand Duportal",
+        adresse2: "",
+        adresse3: "",
+        code_postal: "31000",
+        ville: "Toulouse"
+      },
+      tel: "04 37 28 70 20",
+      web: "www.rhonegrandlyon.soliha.fr"
     },
     {
-      departements: ["31"],
       raison_sociale: "Conseil Départemental de la Haute-Garonne",
       id_clavis: 5182,
       email: "delegataire-cd31-1@anah.gouv.fr",
       type: "DLC3",
-    },
-    {
-      departements: ["62"],
+      siret: "30247604500036",
+      adresse_postal: {
+        adresse1: "2 Boulevard Armand Duportal",
+        adresse2: "",
+        adresse3: "",
+        code_postal: "31000",
+        ville: "Toulouse"
+      },
+      tel: "04 27 28 70 20",
+      web: "www.rhonegrandlyon.soliha.fr"
+    }],
+
+    "62" => [{
       raison_sociale: "Direction Départementale des Territoires et de la Mer du Pas-de-Calais",
       id_clavis: 5093,
-      adresse_postale: "8 Rue du Puits d'Amour, 62200 Boulogne-sur-Mer",
       email: "delegation62-1@anah.gouv.fr",
       type: "DDT",
+      siret: "30248604900036",
+      adresse_postal: {
+        adresse1: "8 Rue du Puits d'Amour",
+        adresse2: "",
+        adresse3: "",
+        code_postal: "62200",
+        ville: "Boulogne-sur-Mer"
+      },
+      tel: "06 37 28 70 20",
+      web: "www.rhonegrandlyon.soliha.fr"
     },
     {
-      departements: ["62"],
       raison_sociale: "Communauté Urbaine d'Arras",
       id_clavis: 5226,
-      adresse_postale: "Boulevard du Général de Gaulle, 62000 Arras",
+      adresse_postale: ", 62000 Arras",
       email: "delegataire-Arras62-1@anah.gouv.fr",
       type: "DLC3",
+      siret: "30248604900176",
+      adresse_postal: {
+        adresse1: "Boulevard du Général de Gaulle",
+        adresse2: "",
+        adresse3: "",
+        code_postal: "62000",
+        ville: "Arras"
+      },
+      tel: "04 37 28 70 30",
+      web: "www.rhonegrandlyon.soliha.fr"
     },
     {
-      departements: ["62"],
       raison_sociale: "Communauté d'Agglomération de Béthune-Bruay",
       id_clavis: 5228,
-      adresse_postale: "100 Avenue de Londres, 62400 Béthune",
       email: "delegataire-Bethune62-1@anah.gouv.fr",
       type: "DLC2",
-    },
-  ]
+      siret: "30246704900176",
+      adresse_postal: {
+        adresse1: "100 Avenue de Londres",
+        adresse2: "",
+        adresse3: "",
+        code_postal: "62400",
+        ville: "Béthune"
+      },
+      tel: "04 37 28 80 20",
+      web: "www.rhonegrandlyon.soliha.fr"
+    }],
+  }
 
   SIEGES = [
     {
@@ -251,4 +434,3 @@ private
     },
   ]
 end
-

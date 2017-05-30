@@ -249,7 +249,7 @@ private
       email: "demo-delegation@anah.gouv.fr",
       type: "DDT",
       siret: "30247604900036",
-      adresse_postal: {
+      adresse_postale: {
         adresse1: "30 rue du Caporal Peugeot",
         adresse2: "",
         adresse3: "",
@@ -285,7 +285,7 @@ private
       email: "delegation95-1@anah.gouv.fr",
       siret: "30247604900037",
       type: "DDT",
-      adresse_postal: {
+      adresse_postale: {
         adresse1: "Les Châteaux Saint-Sylvère",
         adresse2: "",
         adresse3: "",
@@ -302,7 +302,7 @@ private
       email: "delegation31@anah.gouv.fr",
       type: "DDT",
       siret: "30247604900036",
-      adresse_postal: {
+      adresse_postale: {
         adresse1: "2 Boulevard Armand Duportal",
         adresse2: "",
         adresse3: "",
@@ -318,7 +318,7 @@ private
       email: "delegataire-cd31-1@anah.gouv.fr",
       type: "DLC3",
       siret: "30247604500036",
-      adresse_postal: {
+      adresse_postale: {
         adresse1: "2 Boulevard Armand Duportal",
         adresse2: "",
         adresse3: "",
@@ -335,7 +335,7 @@ private
       email: "delegation62-1@anah.gouv.fr",
       type: "DDT",
       siret: "30248604900036",
-      adresse_postal: {
+      adresse_postale: {
         adresse1: "8 Rue du Puits d'Amour",
         adresse2: "",
         adresse3: "",
@@ -348,11 +348,10 @@ private
     {
       raison_sociale: "Communauté Urbaine d'Arras",
       id_clavis: 5226,
-      adresse_postale: ", 62000 Arras",
       email: "delegataire-Arras62-1@anah.gouv.fr",
       type: "DLC3",
       siret: "30248604900176",
-      adresse_postal: {
+      adresse_postale: {
         adresse1: "Boulevard du Général de Gaulle",
         adresse2: "",
         adresse3: "",
@@ -368,7 +367,7 @@ private
       email: "delegataire-Bethune62-1@anah.gouv.fr",
       type: "DLC2",
       siret: "30246704900176",
-      adresse_postal: {
+      adresse_postale: {
         adresse1: "100 Avenue de Londres",
         adresse2: "",
         adresse3: "",

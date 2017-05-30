@@ -126,8 +126,10 @@ private
       id_clavis: 5267,
       email: "operateur25-1@anah.gouv.fr",
       siret: "30247604900046",
-      adresse_postal: {
-        adresse: "30 rue du Caporal Peugeot",
+      adresse_postale: {
+        adresse1: "30 rue du Caporal Peugeot",
+        adresse2: "",
+        adresse3: "",
         code_postal: "25000",
         ville: "BESANCON"
       },
@@ -140,8 +142,10 @@ private
       id_clavis: 5262,
       email: "demo-operateur@anah.gouv.fr",
       siret: "30247604901036",
-      adresse_postal: {
-        adresse: "30 rue du Caporal Peugeot",
+      adresse_postale: {
+        adresse1: "30 rue du Caporal Peugeot",
+        adresse2: "",
+        adresse3: "",
         code_postal: "25000",
         ville: "BESANCON"
       },
@@ -154,8 +158,10 @@ private
       id_clavis: 5265,
       email: "operateur88-1@anah.gouv.fr",
       siret: "30247634900036",
-      adresse_postal: {
-        adresse: "5 rue Thiers BP 450",
+      adresse_postale: {
+        adresse1: "5 rue Thiers BP 450",
+        adresse2: "",
+        adresse3: "",
         code_postal: "88011",
         ville: "BESEPINAL CEDEX"
       },
@@ -167,8 +173,10 @@ private
       id_clavis: 5270,
       email: "operateur88-2@anah.gouv.fr",
       siret: "34758223100168",
-      adresse_postal: {
-        adresse: "2 Route d'Aydoilles",
+      adresse_postale: {
+        adresse1: "2 Route d'Aydoilles",
+        adresse2: "",
+        adresse3: "",
         code_postal: "88600",
         ville: "Fontenay"
       },
@@ -180,8 +188,10 @@ private
       id_clavis: 5271,
       email: "operateur95-1@anah.gouv.fr",
       siret: "30247604900036",
-      adresse_postal: {
-        adresse: "Les Châteaux Saint-Sylvère",
+      adresse_postale: {
+        adresse1: "Les Châteaux Saint-Sylvère",
+        adresse2: "",
+        adresse3: "",
         code_postal: "95000",
         ville: "Cergy"
       },
@@ -193,8 +203,10 @@ private
       id_clavis: 5276,
       email: "operateur31-1@anah.gouv.fr",
       siret: "77557134200077",
-      adresse_postal: {
-        adresse: "2 Boulevard Armand Duportal",
+      adresse_postale: {
+        adresse1: "2 Boulevard Armand Duportal",
+        adresse2: "",
+        adresse3: "",
         code_postal: "31000",
         ville: "Toulouse"
       },
@@ -206,8 +218,10 @@ private
       id_clavis: 5274,
       email: "operateur31-2@anah.gouv.fr",
       siret: "30247604900036",
-      adresse_postal: {
-        adresse: "60 Boulevard Déodat de Sévérac",
+      adresse_postale: {
+        adresse1: "60 Boulevard Déodat de Sévérac",
+        adresse2: "",
+        adresse3: "",
         code_postal: "31300",
         ville: "Toulouse"
       },
@@ -219,8 +233,10 @@ private
       id_clavis: 5275,
       email: "operateur62-1@anah.gouv.fr",
       siret: "30247604900036",
-      adresse_postal: {
-        adresse: "6 Rue Jean Bodel",
+      adresse_postale: {
+        adresse1: "6 Rue Jean Bodel",
+        adresse2: "",
+        adresse3: "",
         code_postal: "62000",
         ville: "Arras"
       },
@@ -232,8 +248,10 @@ private
       id_clavis: 5278,
       email: "operateur62-2@anah.gouv.fr",
       siret: "30247604900036",
-      adresse_postal: {
-        adresse: "6 Rue Jean Bodel",
+      adresse_postale: {
+        adresse1: "6 Rue Jean Bodel",
+        adresse2: "",
+        adresse3: "",
         code_postal: "62000",
         ville: "Arras"
       },
@@ -268,7 +286,7 @@ private
       siret: "30227604900036",
       email: "delegation88-1@anah.gouv.fr",
       type: "DDT",
-      adresse_postal: {
+      adresse_postale: {
         adresse1: "5 rue Thiers BP 450",
         adresse2: "",
         adresse3: "",
